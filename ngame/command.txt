@@ -1,0 +1,27 @@
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/scratch/XC --version 0 --config configs/NGAME/ORCASRelatedQueries-1M-2.0.json --data_dir
+
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/scratch/XC --version 2 --seed 100 --config configs/NGAME/ORCASRelatedQueries-1M.json --predict
+
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/scratch/XC --version 0 --seed 100 --config configs/NGAME/ORCASRelatedQueries-1M_D1.json --data_dir /home/scai/phd/aiz218323/scratch/XC/data/ORCASRelatedQueries-1M_D1/ --rerank_file tst_predictions_llm-augment.npy --rerank
+
+python3 tools/create_tokenized_files.py --data-dir ~/scratch/Projects/AXEL/data/ORCASRelatedQueries-1M/axel/D1/ --max-length 32 --tokenizer-type bert-base-uncased --test_file ~/scratch/Projects/AXEL/data/ORCASRelatedQueries-1M/axel/D1/sampled_tst.aug_10.map.txt --type 1
+
+Predictions on the sampled_trn data
+-----------------------------------
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/scratch/XC --version 0 --seed 100 --config configs/NGAME/ORCASRelatedQueries-1M_D1.json --predict --pred_fname sampled_trn_predictions --data_dir ~/scratch/XC/data/ORCASRelatedQueries-1M_D1/
+
+Training on G-LF-WikiSeeAlsoTitles-300K
+---------------------------------------
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/scratch/XC --version 0 --seed 100 --config configs/NGAME/G-LF-WikiSeeAlsoTitles-300K.json
+
+Tokenization for metadata augmentation
+--------------------------------------
+python3 tools/create_tokenized_files.py --data-dir ../../../data/G-LF-WikiSeeAlsoTitles-300K --max-length 32 --tokenizer-type bert-base-uncased --meta_tag category
+
+Training on G-LF-WikiSeeAlsoTitles-300K
+---------------------------------------
+python runner.py --pipeline NGAME --work_dir /home/scai/phd/aiz218323/tmp/XC --version 2 --seed 100 --config configs/NGAME/G-LF-WikiSeeAlsoTitles-300K.json
+
+
+python evaluate.py --data_dir=/home/scai/phd/aiz218323/Projects/XC/data/LF-Amazon-131K/ --pred_file=/home/scai/phd/aiz218323/Projects/XC/results/NGAME/STransformer/LF-Amazon-131K/v_0_100/tst_predictions_knn.npz --top_k=10
+python evaluate.py --data_dir=/home/scai/phd/aiz218323/Projects/XC/data/LF-Amazon-131K/ --pred_file=/home/scai/phd/aiz218323/Projects/XC/results/NGAME/STransformer/LF-Amazon-131K/v_0_100/tst_predictions_knn.npz --top_k=10

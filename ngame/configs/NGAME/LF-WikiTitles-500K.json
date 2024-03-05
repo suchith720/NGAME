@@ -1,6 +1,6 @@
 {
     "global": {
-        "dataset": "LF-WikiTitles-500K",
+        "dataset": "(mapped)LF-WikiTitles-500K",
         "feature_type": "sequential",
         "num_labels": 501070,
         "arch": "STransformer",
@@ -25,7 +25,7 @@
         "tst_feat_fname": "tst_doc_input_ids.npy,tst_doc_attention_mask.npy",
         "tst_label_fname": "tst_X_Y.txt",
         "tst_filter_fname": "",
-        "lbl_feat_fname": "lbl_input_ids.npy,lbl_attention_mask.npy",
+        "lbl_feat_fname": "lbl_input_ids.npy,lbl_attention_mask.npy"
     },
     "siamese": {
         "num_epochs": 300,

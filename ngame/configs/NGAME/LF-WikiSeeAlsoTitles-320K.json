@@ -36,7 +36,7 @@
         "network_type": "siamese",
         "metric": "cosine",
         "validate_after": 50,
-        "learning_rate": 0.0002,
+        "learning_rate": 0.00002,
         "batch_size": 32,
         "normalize": true,
         "margin": 0.3, 
